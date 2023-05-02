@@ -21,8 +21,19 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
+    private TipCalculator tipCalculator;
 
     public MainGUI(){
+        textArea1.setText("0");
+        textArea2.setText(0+"%");
+        textArea5.setText(0+"");
+        int one = Integer.parseInt(textArea1.getText());
+        int two = Integer.parseInt(textArea2.getText().substring(0, textArea2.getText().indexOf("%")));
+        int three = Integer.parseInt(textArea5.getText());
+        tipCalculator = new TipCalculator(one, two, three);
+
+        textArea3.setText(tipCalculator.calculateTip() +"");
+        textArea4.setText(tipCalculator.totalBill()+"");
         createUIComponents();
     }
 
@@ -45,10 +56,11 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
         if (source instanceof JButton) {
             JButton button = (JButton) source;
             String text = button.getText();
-
             if (text.equals("+")) {
-                int add = Integer.parseInt(textArea2.getText())+1;
+                int add = Integer.parseInt(textArea2.getText().substring(0, textArea2.getText().indexOf("%")))+1;
                 textArea2.setText(add + "%");
+                textArea3.setText(tipCalculator.calculateTip() +"");
+                textArea4.setText(tipCalculator.totalBill()+"");
             }
         }
     }
