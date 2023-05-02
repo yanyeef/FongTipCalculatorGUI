@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 public class MainGUI extends JFrame implements ActionListener, KeyListener {
 
@@ -46,25 +47,24 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
             String text = button.getText();
 
             if (text.equals("+")) {
-                textArea2.append("1");
-            } else {
-                myTextArea.append("button 2 clicked! ");
+                int add = Integer.parseInt(textArea2.getText())+1;
+                textArea2.setText(add + "%");
             }
         }
     }
 
-//    @Override
-//    public void keyTyped(KeyEvent e) {
-//        // KeyListener interface requires this method be added, even if unimplemented
-//    }
-//
-//    @Override
-//    public void keyPressed(KeyEvent e) {
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // KeyListener interface requires this method be added, even if unimplemented
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
 //        myTextArea.append("key pressed! ");
-//    }
-//
-//    @Override
-//    public void keyReleased(KeyEvent e) {
-//        // KeyListener interface requires this method be added, even if unimplemented
-//    }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // KeyListener interface requires this method be added, even if unimplemented
+    }
 }
