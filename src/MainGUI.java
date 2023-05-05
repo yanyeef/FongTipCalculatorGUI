@@ -24,11 +24,11 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
     private TipCalculator tipCalculator;
 
     public MainGUI(){
-        textArea1.setText("0");
-        textArea2.setText(0+"%");
+        textArea1.setText("10");
+        textArea2.setText(1+"");
         textArea5.setText(0+"");
         int one = Integer.parseInt(textArea1.getText());
-        int two = Integer.parseInt(textArea2.getText().substring(0, textArea2.getText().indexOf("%")));
+        int two = Integer.parseInt(textArea2.getText());
         int three = Integer.parseInt(textArea5.getText());
         tipCalculator = new TipCalculator(one, two, three);
 
@@ -57,8 +57,16 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
             JButton button = (JButton) source;
             String text = button.getText();
             if (text.equals("+")) {
-                int add = Integer.parseInt(textArea2.getText().substring(0, textArea2.getText().indexOf("%")))+1;
-                textArea2.setText(add + "%");
+                if(button == button2){
+                    int add = Integer.parseInt(textArea2.getText())+1;
+                    textArea2.setText(add + "");
+                } else if( button == button4){
+                    int add2 = Integer.parseInt(textArea5.getText())+1;
+                    textArea5.setText(add2 + "");
+                }
+                tipCalculator.setBill(Integer.parseInt(textArea1.getText()));
+                tipCalculator.setTipPercentage(Integer.parseInt(textArea2.getText()));
+                tipCalculator.setNumberOfPeople(Integer.parseInt(textArea5.getText()));
                 textArea3.setText(tipCalculator.calculateTip() +"");
                 textArea4.setText(tipCalculator.totalBill()+"");
             }
