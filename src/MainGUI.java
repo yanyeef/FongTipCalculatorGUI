@@ -24,10 +24,10 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
     private TipCalculator tipCalculator;
 
     public MainGUI(){
-        textArea1.setText("10");
-        textArea2.setText(1+"");
-        textArea5.setText(0+"");
-        int one = Integer.parseInt(textArea1.getText());
+        textArea1.setText("0");
+        textArea2.setText(15+"");
+        textArea5.setText(1+"");
+        double one = Double.parseDouble(textArea1.getText());
         int two = Integer.parseInt(textArea2.getText());
         int three = Integer.parseInt(textArea5.getText());
         tipCalculator = new TipCalculator(one, two, three);
@@ -64,12 +64,23 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
                     int add2 = Integer.parseInt(textArea5.getText())+1;
                     textArea5.setText(add2 + "");
                 }
-                tipCalculator.setBill(Integer.parseInt(textArea1.getText()));
-                tipCalculator.setTipPercentage(Integer.parseInt(textArea2.getText()));
-                tipCalculator.setNumberOfPeople(Integer.parseInt(textArea5.getText()));
-                textArea3.setText(tipCalculator.calculateTip() +"");
-                textArea4.setText(tipCalculator.totalBill()+"");
             }
+            else if(text.equals("-")){
+                int sub = Integer.parseInt(textArea2.getText());
+                int sub2 =  Integer.parseInt(textArea5.getText());
+                if(button == button1 && sub >0){
+                    textArea2.setText(sub-1+"");
+                } else if (button == button3 && sub2>0) {
+                    textArea5.setText(sub2-1+"");
+                }
+            }
+            tipCalculator.setBill(Double.parseDouble(textArea1.getText()));
+            tipCalculator.setTipPercentage(Integer.parseInt(textArea2.getText()));
+            tipCalculator.setNumberOfPeople(Integer.parseInt(textArea5.getText()));
+            double tips = Math.round((tipCalculator.calculateTip()) * 100.0) / 100.0;
+            textArea3.setText(tips +"");
+            double bill = Math.round((tipCalculator.totalBill()) * 100.0) / 100.0;
+            textArea4.setText(bill+"");
         }
     }
 
