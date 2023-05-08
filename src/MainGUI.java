@@ -21,6 +21,8 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
     private JLabel label3;
     private JLabel label4;
     private JLabel label5;
+    private JLabel label7;
+    private JLabel label6;
     private TipCalculator tipCalculator;
 
     public MainGUI(){
@@ -77,10 +79,17 @@ public class MainGUI extends JFrame implements ActionListener, KeyListener {
             tipCalculator.setBill(Double.parseDouble(textArea1.getText()));
             tipCalculator.setTipPercentage(Integer.parseInt(textArea2.getText()));
             tipCalculator.setNumberOfPeople(Integer.parseInt(textArea5.getText()));
-            double tips = Math.round((tipCalculator.calculateTip()) * 100.0) / 100.0;
-            textArea3.setText(tips +"");
-            double bill = Math.round((tipCalculator.totalBill()) * 100.0) / 100.0;
-            textArea4.setText(bill+"");
+            if(Integer.parseInt(textArea5.getText())==1) {
+                double tips = Math.round((tipCalculator.calculateTip()) * 100.0) / 100.0;
+                textArea3.setText(tips + "");
+                double bill = Math.round((tipCalculator.totalBill()) * 100.0) / 100.0;
+                textArea4.setText(bill + "");
+            } else {
+                double tips = Math.round((tipCalculator.tipPerPerson()) * 100.0) / 100.0;
+                textArea3.setText(tips + "");
+                double bill = Math.round((tipCalculator.totalPerPerson()) * 100.0) / 100.0;
+                textArea4.setText(bill + "");
+            }
         }
     }
 
